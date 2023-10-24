@@ -7,7 +7,7 @@ const Page = () => (
     <>
         <Head>
             <title>
-                404 | S-Farm Scube
+                404 | S-Farm Scube University of Mataram
             </title>
         </Head>
         <Box
