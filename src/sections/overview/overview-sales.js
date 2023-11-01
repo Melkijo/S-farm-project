@@ -2,158 +2,195 @@ import PropTypes from 'prop-types';
 import ArrowPathIcon from '@heroicons/react/24/solid/ArrowPathIcon';
 import ArrowRightIcon from '@heroicons/react/24/solid/ArrowRightIcon';
 import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  Divider,
-  SvgIcon
+    Button,
+    ButtonGroup,
+    Card,
+    CardActions,
+    CardContent,
+    CardHeader,
+    Divider,
+    SvgIcon,
+    Typography
 } from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
 import { Chart } from 'src/components/chart';
+import { Stack } from '@mui/system';
+
+// import Chart from "react-apexcharts";
 
 const useChartOptions = () => {
-  const theme = useTheme();
+    const theme = useTheme();
 
-  return {
-    chart: {
-      background: 'transparent',
-      stacked: false,
-      toolbar: {
-        show: false
-      }
-    },
-    colors: [theme.palette.primary.main, alpha(theme.palette.primary.main, 0.25)],
-    dataLabels: {
-      enabled: false
-    },
-    fill: {
-      opacity: 1,
-      type: 'solid'
-    },
-    grid: {
-      borderColor: theme.palette.divider,
-      strokeDashArray: 2,
-      xaxis: {
-        lines: {
-          show: false
+    return {
+        chart: {
+            background: 'transparent',
+            stacked: false,
+
+            toolbar: {
+                show: true
+            }
+        },
+        colors: [theme.palette.primary.main, alpha(theme.palette.primary.main, 0.25)],
+        dataLabels: {
+            enabled: false
+        },
+        fill: {
+            opacity: 1,
+            type: 'solid'
+        },
+        grid: {
+            borderColor: theme.palette.divider,
+            strokeDashArray: 2,
+            xaxis: {
+                lines: {
+                    show: true
+                }
+            },
+            yaxis: {
+                lines: {
+                    show: true
+                }
+            }
+        },
+        legend: {
+            show: false
+        },
+
+        plotOptions: {
+            bar: {
+                columnWidth: '40px'
+            },
+
+        },
+        stroke: {
+            // colors: ['transparent'],
+            show: true,
+            width: [4, 4]
+        },
+        theme: {
+            mode: theme.palette.mode
+        },
+        xaxis: {
+            axisBorder: {
+                color: theme.palette.divider,
+                show: true
+            },
+            axisTicks: {
+                color: theme.palette.divider,
+                show: true
+            },
+            // make the x axis labels realtime by using the categories array
+
+
+            //make the range is 1 month in the past and one month in the future
+
+
+
+
+
+            categories: [
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun',
+                'Jul',
+                'Aug',
+                'Sep',
+                'Oct',
+                'Nov',
+                'Dec'
+            ],
+            labels: {
+                offsetY: 5,
+                style: {
+                    colors: theme.palette.text.secondary
+                }
+            }
+        },
+        yaxis: {
+            labels: {
+                formatter: (value) => (value > 0 ? `${value}` : `${value}`),
+                offsetX: -10,
+                style: {
+                    colors: theme.palette.text.secondary
+                }
+            }
         }
-      },
-      yaxis: {
-        lines: {
-          show: true
-        }
-      }
-    },
-    legend: {
-      show: false
-    },
-    plotOptions: {
-      bar: {
-        columnWidth: '40px'
-      }
-    },
-    stroke: {
-      colors: ['transparent'],
-      show: true,
-      width: 2
-    },
-    theme: {
-      mode: theme.palette.mode
-    },
-    xaxis: {
-      axisBorder: {
-        color: theme.palette.divider,
-        show: true
-      },
-      axisTicks: {
-        color: theme.palette.divider,
-        show: true
-      },
-      categories: [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec'
-      ],
-      labels: {
-        offsetY: 5,
-        style: {
-          colors: theme.palette.text.secondary
-        }
-      }
-    },
-    yaxis: {
-      labels: {
-        formatter: (value) => (value > 0 ? `${value}K` : `${value}`),
-        offsetX: -10,
-        style: {
-          colors: theme.palette.text.secondary
-        }
-      }
-    }
-  };
+    };
 };
 
 export const OverviewSales = (props) => {
-  const { chartSeries, sx } = props;
-  const chartOptions = useChartOptions();
+    const { chartSeries, sx } = props;
+    const chartOptions = useChartOptions();
 
-  return (
-    <Card sx={sx}>
-      <CardHeader
-        action={(
-          <Button
-            color="inherit"
-            size="small"
-            startIcon={(
-              <SvgIcon fontSize="small">
-                <ArrowPathIcon />
-              </SvgIcon>
-            )}
-          >
-            Sync
-          </Button>
-        )}
-        title="Sales"
-      />
-      <CardContent>
-        <Chart
-          height={350}
-          options={chartOptions}
-          series={chartSeries}
-          type="bar"
-          width="100%"
-        />
-      </CardContent>
-      <Divider />
-      <CardActions sx={{ justifyContent: 'flex-end' }}>
-        <Button
-          color="inherit"
-          endIcon={(
-            <SvgIcon fontSize="small">
-              <ArrowRightIcon />
-            </SvgIcon>
-          )}
-          size="small"
-        >
-          Overview
-        </Button>
-      </CardActions>
-    </Card>
-  );
+    return (
+        <Card sx={sx}>
+            <CardHeader
+                action={(
+                    <Button
+                        color="inherit"
+                        size="small"
+                        startIcon={(
+                            <SvgIcon fontSize="small">
+                                <ArrowPathIcon />
+                            </SvgIcon>
+                        )}
+                    >
+                        Sync
+                    </Button>
+                )}
+                title="Chart"
+            />
+            {/* make drop down menu for chart type */}
+            <Divider />
+            <Stack direction='row'
+                justifyContent="space-between" paddingX={2}>
+                <Button variant='outlined'>
+                    Winds    v
+                </Button>
+
+
+                <ButtonGroup variant="text">
+                    <Button >Day</Button>
+                    <Button>Week</Button>
+                    <Button>Month</Button>
+                    <Button>All Time</Button>
+
+                </ButtonGroup>
+            </Stack>
+
+
+
+            <CardContent>
+                <Chart
+                    height={350}
+                    options={chartOptions}
+                    series={chartSeries}
+                    type="line"
+                    width="100%"
+                />
+            </CardContent>
+            <Divider />
+            {/* <CardActions sx={{ justifyContent: 'flex-end' }}>
+                <Button
+                    color="inherit"
+                    endIcon={(
+                        <SvgIcon fontSize="small">
+                            <ArrowRightIcon />
+                        </SvgIcon>
+                    )}
+                    size="small"
+                >
+                    Overview
+                </Button>
+            </CardActions> */}
+        </Card >
+    );
 };
 
 OverviewSales.protoTypes = {
-  chartSeries: PropTypes.array.isRequired,
-  sx: PropTypes.object
+    chartSeries: PropTypes.array.isRequired,
+    sx: PropTypes.object
 };

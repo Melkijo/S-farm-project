@@ -7,6 +7,7 @@ import UserPlusIcon from '@heroicons/react/24/solid/UserPlusIcon';
 import UsersIcon from '@heroicons/react/24/solid/UsersIcon';
 import XCircleIcon from '@heroicons/react/24/solid/XCircleIcon';
 import { SvgIcon } from '@mui/material';
+import { IotIcon, PlantIcon } from 'src/icons';
 
 export const items = [
     {
@@ -19,23 +20,23 @@ export const items = [
         )
     },
     {
-        title: 'Customers',
+        title: 'Plants',
         path: '/customers',
         icon: (
             <SvgIcon fontSize="small">
-                <UsersIcon />
+                <PlantIcon />
             </SvgIcon>
         )
     },
-    //   {
-    //     title: 'Companies',
-    //     path: '/companies',
-    //     icon: (
-    //       <SvgIcon fontSize="small">
-    //         <ShoppingBagIcon />
-    //       </SvgIcon>
-    //     )
-    //   },
+    {
+        title: 'IoT',
+        path: '/companies',
+        icon: (
+            <SvgIcon fontSize="small">
+                <IotIcon />
+            </SvgIcon>
+        )
+    },
     //   {
     //     title: 'Account',
     //     path: '/account',
